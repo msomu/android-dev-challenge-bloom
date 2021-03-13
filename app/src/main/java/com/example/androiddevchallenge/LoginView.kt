@@ -21,13 +21,13 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.androiddevchallenge.ui.theme.MyTheme
+import androidx.navigation.NavController
+import androidx.navigation.compose.navigate
 import com.example.androiddevchallenge.ui.theme.shapes
 
 @Composable
-fun Login() {
+fun Login(navController: NavController) {
     Surface(color = MaterialTheme.colors.background) {
         Column(Modifier.padding(16.dp)) {
             Text(
@@ -91,7 +91,7 @@ fun Login() {
             Spacer(modifier = Modifier.padding(16.dp))
             Button(
                 onClick = {
-//                    navController.navigate("home")
+                    navController.navigate("home")
                 }, modifier = Modifier
                     .height(48.dp)
                     .fillMaxWidth()
@@ -108,21 +108,5 @@ fun Login() {
                 )
             }
         }
-    }
-}
-
-@Preview("Light Theme", widthDp = 360, heightDp = 640)
-@Composable
-fun LightPreview() {
-    MyTheme {
-        Login()
-    }
-}
-
-@Preview("Dark Theme", widthDp = 360, heightDp = 640)
-@Composable
-fun DarkPreview() {
-    MyTheme(darkTheme = true) {
-        Login()
     }
 }
