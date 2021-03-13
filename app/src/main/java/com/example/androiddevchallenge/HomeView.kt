@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -39,6 +40,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.FilterList
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -58,12 +60,7 @@ import dev.chrisbanes.accompanist.coil.CoilImage
 @Composable
 fun LightPreview() {
     MyTheme {
-        CategoryCard(
-            Category(
-                name = "Monstera",
-                posterUrl = "https://images.pexels.com/photos/3097770/pexels-photo-3097770.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-            )
-        )
+        Home()
     }
 }
 
@@ -71,12 +68,7 @@ fun LightPreview() {
 @Composable
 fun DarkPreview() {
     MyTheme(darkTheme = true) {
-        CategoryCard(
-            Category(
-                name = "Monstera",
-                posterUrl = "https://images.pexels.com/photos/3097770/pexels-photo-3097770.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-            )
-        )
+        Home()
     }
 }
 
@@ -96,12 +88,24 @@ fun Home() {
 fun Garden() {
     val categories = getPlants()
     Column {
-        Text(
-            "Design your home garden",
-            style = MaterialTheme.typography.h1,
-            color = MaterialTheme.colors.onPrimary,
-            modifier = Modifier.firstBaselineToTop(32.dp)
-        )
+        Row(
+            Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                "Design your home garden",
+                style = MaterialTheme.typography.h1,
+                color = MaterialTheme.colors.onPrimary,
+                modifier = Modifier.firstBaselineToTop(32.dp)
+            )
+            Icon(
+                Icons.Outlined.FilterList,
+                contentDescription = null,
+                modifier = Modifier.width(24.dp).aspectRatio(1.0f),
+                tint = MaterialTheme.colors.onPrimary,
+            )
+        }
         Spacer(modifier = Modifier.padding(top = 16.dp))
         LazyColumn(
             content = {

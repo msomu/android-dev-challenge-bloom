@@ -31,16 +31,37 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.navigate
+import androidx.navigation.compose.rememberNavController
+import com.example.androiddevchallenge.ui.theme.MyTheme
 import com.example.androiddevchallenge.ui.theme.pink900
 import com.example.androiddevchallenge.ui.theme.shapes
 import com.example.androiddevchallenge.ui.theme.white
+
+@Preview("Welcome Light Theme", widthDp = 360, heightDp = 640)
+@Composable
+fun WelcomeLightPreview() {
+    MyTheme {
+        Welcome(rememberNavController())
+    }
+}
+
+@Preview("Welcome Dark Theme", widthDp = 360, heightDp = 640)
+@Composable
+fun WelcomeDarkPreview() {
+    MyTheme(darkTheme = true) {
+        Welcome(rememberNavController())
+    }
+}
 
 @Composable
 fun Welcome(navController: NavController) {
@@ -49,69 +70,75 @@ fun Welcome(navController: NavController) {
             val bg = if (isSystemInDarkTheme()) painterResource(id = R.drawable.ic_dark_welcome_bg)
             else painterResource(id = R.drawable.ic_light_welcome_bg)
             Image(
-                modifier = Modifier.fillMaxSize(),
                 painter = bg,
-                contentDescription = "background"
+                contentDescription = "background",
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.FillWidth,
+                alignment = Alignment.Center
             )
-            Column(Modifier.padding(16.dp)) {
+            Column(Modifier.fillMaxSize()) {
                 val illos =
                     if (isSystemInDarkTheme()) painterResource(id = R.drawable.ic_dark_welcome_illos)
                     else painterResource(id = R.drawable.ic_light_welcome_illos)
                 val logo = if (isSystemInDarkTheme()) painterResource(id = R.drawable.ic_dark_logo)
                 else painterResource(id = R.drawable.ic_light_logo)
                 Image(
-                    modifier = Modifier.padding(start = 88.dp, top = 72.dp),
+                    modifier = Modifier
+                        .padding(start = 88.dp, top = 72.dp),
                     painter = illos,
-                    contentDescription = "illos"
+                    contentDescription = "illos",
+                    contentScale = ContentScale.Crop,
+                    alignment = Alignment.TopStart
                 )
-                Spacer(modifier = Modifier.padding(48.dp))
-                Image(
-                    modifier = Modifier.fillMaxWidth(),
-                    painter = logo,
-                    contentDescription = "logo"
-                )
-                Text(
-                    text = "Beautiful home garden solutions",
-                    modifier = Modifier
-                        .firstBaselineToTop(32.dp)
-                        .fillMaxWidth(),
-                    style = MaterialTheme.typography.subtitle1,
-                    color = MaterialTheme.colors.onPrimary,
-                    textAlign = TextAlign.Center
-                )
-                Spacer(modifier = Modifier.padding(40.dp))
-                Button(
-                    onClick = {
-                        navController.navigate("login")
-                    },
-                    modifier = Modifier
-                        .padding(bottom = 8.dp)
-                        .height(48.dp)
-                        .fillMaxWidth()
-                        .clip(shapes.medium),
-                    colors = ButtonDefaults.buttonColors(
-                        backgroundColor = MaterialTheme.colors.secondary,
-                        contentColor = MaterialTheme.colors.onSecondary
+                Column(Modifier.padding(16.dp)) {
+                    Image(
+                        modifier = Modifier.fillMaxWidth().padding(top = 32.dp),
+                        painter = logo,
+                        contentDescription = "logo"
                     )
-                ) {
                     Text(
-                        text = "Create account",
-                        style = MaterialTheme.typography.button,
-                        color = MaterialTheme.colors.onSecondary
+                        text = "Beautiful home garden solutions",
+                        modifier = Modifier
+                            .firstBaselineToTop(32.dp)
+                            .fillMaxWidth(),
+                        style = MaterialTheme.typography.subtitle1,
+                        color = MaterialTheme.colors.onPrimary,
+                        textAlign = TextAlign.Center
                     )
-                }
-                Text(
-                    text = "Log in",
-                    modifier = Modifier
-                        .firstBaselineToTop(32.dp)
-                        .fillMaxWidth()
-                        .clickable {
+                    Spacer(modifier = Modifier.padding(20.dp))
+                    Button(
+                        onClick = {
                             navController.navigate("login")
                         },
-                    style = MaterialTheme.typography.button,
-                    textAlign = TextAlign.Center,
-                    color = if (isSystemInDarkTheme()) white else pink900
-                )
+                        modifier = Modifier
+                            .padding(bottom = 8.dp)
+                            .height(48.dp)
+                            .fillMaxWidth()
+                            .clip(shapes.medium),
+                        colors = ButtonDefaults.buttonColors(
+                            backgroundColor = MaterialTheme.colors.secondary,
+                            contentColor = MaterialTheme.colors.onSecondary
+                        )
+                    ) {
+                        Text(
+                            text = "Create account",
+                            style = MaterialTheme.typography.button,
+                            color = MaterialTheme.colors.onSecondary
+                        )
+                    }
+                    Text(
+                        text = "Log in",
+                        modifier = Modifier
+                            .firstBaselineToTop(32.dp)
+                            .fillMaxWidth()
+                            .clickable {
+                                navController.navigate("login")
+                            },
+                        style = MaterialTheme.typography.button,
+                        textAlign = TextAlign.Center,
+                        color = if (isSystemInDarkTheme()) white else pink900
+                    )
+                }
             }
         }
     }
