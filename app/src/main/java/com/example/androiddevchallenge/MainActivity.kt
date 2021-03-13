@@ -44,10 +44,10 @@ class MainActivity : AppCompatActivity() {
 fun MyApp() {
     val navController = rememberNavController()
     Surface(color = MaterialTheme.colors.background) {
-        NavHost(navController = navController, startDestination = "home") {
+        NavHost(navController = navController, startDestination = "welcome") {
             composable("welcome") { Welcome(navController = navController) }
             composable("login") { Login(navController = navController) }
-            composable("home") { Home() }
+            composable("main") { MainPage(navController = navController) }
         }
     }
 }

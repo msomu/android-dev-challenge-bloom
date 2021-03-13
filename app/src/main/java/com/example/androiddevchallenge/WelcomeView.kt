@@ -1,6 +1,7 @@
 package com.example.androiddevchallenge
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -87,7 +88,10 @@ fun Welcome(navController: NavController) {
                     text = "Log in",
                     modifier = Modifier
                         .firstBaselineToTop(32.dp)
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                        .clickable {
+                            navController.navigate("login")
+                        },
                     style = MaterialTheme.typography.button,
                     textAlign = TextAlign.Center,
                     color = if (isSystemInDarkTheme()) white else pink900
