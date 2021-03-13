@@ -22,11 +22,11 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.androiddevchallenge.ui.theme.MyTheme
-import com.example.androiddevchallenge.ui.theme.Welcome
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,8 +34,19 @@ class MainActivity : AppCompatActivity() {
         window.makeTransparentStatusBar()
         setContent {
             MyTheme {
-                Welcome()
+                MyApp()
             }
+        }
+    }
+}
+
+@Composable
+fun MyApp() {
+    val navController = rememberNavController()
+    Surface(color = MaterialTheme.colors.background) {
+        NavHost(navController = navController, startDestination = "login") {
+            composable("welcome") { Welcome(navController = navController) }
+            composable("login") { Login() }
         }
     }
 }
