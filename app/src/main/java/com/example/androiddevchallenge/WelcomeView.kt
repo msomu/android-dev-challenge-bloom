@@ -92,20 +92,21 @@ fun Welcome(navController: NavController) {
                 )
                 Column(Modifier.padding(16.dp)) {
                     Image(
-                        modifier = Modifier.fillMaxWidth().padding(top = 32.dp),
+                        modifier = Modifier.fillMaxWidth().padding(top = 32.dp).height(32.dp),
                         painter = logo,
-                        contentDescription = "logo"
+                        contentDescription = "logo",
+                        contentScale = ContentScale.Fit
                     )
                     Text(
                         text = "Beautiful home garden solutions",
                         modifier = Modifier
-                            .firstBaselineToTop(32.dp)
+                            .firstBaselineToTop(24.dp)
                             .fillMaxWidth(),
                         style = MaterialTheme.typography.subtitle1,
                         color = MaterialTheme.colors.onPrimary,
                         textAlign = TextAlign.Center
                     )
-                    Spacer(modifier = Modifier.padding(20.dp))
+                    Spacer(modifier = Modifier.padding(19.dp))
                     Button(
                         onClick = {
                             navController.navigate("login")
