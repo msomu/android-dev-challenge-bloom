@@ -1,3 +1,18 @@
+/*
+ * Copyright 2021 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.example.androiddevchallenge
 
 import androidx.compose.foundation.border
@@ -6,7 +21,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -66,7 +80,6 @@ fun DarkPreview() {
     }
 }
 
-
 @Composable
 fun Home() {
     Surface(color = MaterialTheme.colors.background) {
@@ -90,11 +103,13 @@ fun Garden() {
             modifier = Modifier.firstBaselineToTop(32.dp)
         )
         Spacer(modifier = Modifier.padding(top = 16.dp))
-        LazyColumn(content = {
-            items(categories.size) { index ->
-                PlantCard(categories[index])
+        LazyColumn(
+            content = {
+                items(categories.size) { index ->
+                    PlantCard(categories[index])
+                }
             }
-        })
+        )
     }
 }
 
@@ -141,12 +156,14 @@ fun PlantCard(plant: Plant) {
                 )
             }
         }
-        Checkbox(checked = selected,
+        Checkbox(
+            checked = selected,
             onCheckedChange = { selected = !selected },
             modifier = Modifier.constrainAs(checkbox) {
                 end.linkTo(parent.end)
                 top.linkTo(parent.top, margin = 24.dp)
-            })
+            }
+        )
         Divider(
             Modifier
                 .height(1.dp)
@@ -154,7 +171,8 @@ fun PlantCard(plant: Plant) {
                 .constrainAs(divider) {
                     end.linkTo(parent.end)
                     bottom.linkTo(parent.bottom)
-                }, color = MaterialTheme.colors.onPrimary
+                },
+            color = MaterialTheme.colors.onPrimary
         )
     }
 }
@@ -170,11 +188,13 @@ fun BrowseThemes() {
             modifier = Modifier.firstBaselineToTop(32.dp)
         )
         Spacer(modifier = Modifier.padding(top = 8.dp))
-        LazyRow(content = {
-            items(categories.size) { index ->
-                CategoryCard(categories[index])
+        LazyRow(
+            content = {
+                items(categories.size) { index ->
+                    CategoryCard(categories[index])
+                }
             }
-        })
+        )
     }
 }
 

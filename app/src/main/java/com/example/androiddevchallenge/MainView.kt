@@ -1,3 +1,18 @@
+/*
+ * Copyright 2021 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.example.androiddevchallenge
 
 import androidx.annotation.StringRes
@@ -34,7 +49,7 @@ sealed class BottomNavigationScreens(val route: String, @StringRes val resourceI
 }
 
 @Composable
-fun MainPage(navController: NavHostController){
+fun MainPage(navController: NavHostController) {
     val bottomNavigationItems = listOf(
         BottomNavigationScreens.Home,
         BottomNavigationScreens.Favourites,
@@ -72,8 +87,7 @@ private fun MainScreenNavigationConfigurations(
 }
 
 @Composable
-private fun EmptyView(){
-
+private fun EmptyView() {
 }
 
 @Composable
@@ -91,13 +105,15 @@ private fun SpookyAppBottomNavigation(
         val currentRoute = currentRoute(navController)
         items.forEach { screen ->
             BottomNavigationItem(
-                icon = { Icon(
-                    imageVector = screen.icon,
-                    contentDescription = stringResource(id = screen.resourceId),
-                    tint = MaterialTheme.colors.onPrimary
-                ) },
+                icon = {
+                    Icon(
+                        imageVector = screen.icon,
+                        contentDescription = stringResource(id = screen.resourceId),
+                        tint = MaterialTheme.colors.onPrimary
+                    )
+                },
                 modifier = Modifier.background(MaterialTheme.colors.primary),
-                label = { Text(stringResource(id = screen.resourceId),color = MaterialTheme.colors.onPrimary) },
+                label = { Text(stringResource(id = screen.resourceId), color = MaterialTheme.colors.onPrimary) },
                 selected = currentRoute == screen.route,
                 onClick = {
                     // This if check gives us a "singleTop" behavior where we do not create a
