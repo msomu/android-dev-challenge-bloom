@@ -19,6 +19,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -44,7 +45,7 @@ import com.example.androiddevchallenge.ui.theme.shapes
 @Composable
 fun Login(navController: NavController) {
     Surface(color = MaterialTheme.colors.background) {
-        Column(Modifier.padding(16.dp)) {
+        Column(Modifier.padding(16.dp).fillMaxSize()) {
             Text(
                 text = "Log in with email",
                 modifier = Modifier

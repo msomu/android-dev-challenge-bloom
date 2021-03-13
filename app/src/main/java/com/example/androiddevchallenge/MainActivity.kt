@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.toArgb
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -34,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         window.makeTransparentStatusBar()
         setContent {
             MyTheme {
+                window.statusBarColor = MaterialTheme.colors.background.toArgb()
                 MyApp()
             }
         }
